@@ -20,14 +20,14 @@ class db
 
     function signup($connection,$tablename,$username,$password)
     {
-        $sql= "INSERT INTO".$tablename."(username,password) VALUES('".$username."', '".$password."')";
+        $sql = "INSERT INTO ".$tablename."(username, password) VALUES ('".$username."', '".$password."')";
         $result=$connection->query($sql);
         return $result;
     }
 
     function signin($connection,$tablename,$username,$password)
     {
-        $sql="SELECT * FROM".$tablename."WHERE username='".$username."' AND password='".$password."'";
+        $sql = "SELECT * FROM ".$tablename." WHERE username='".$username."' AND password='".$password."'";
         $result=$connection->query($sql);
         return $result;
     }
@@ -35,6 +35,13 @@ class db
     function addTask($connection, $tablename, $user_id, $title, $description)
     {
         $sql = "INSERT INTO ".$tablename." (user_id, title, description) VALUES ('".$user_id."', '".$title."', '".$description."')";
+        $result = $connection->query($sql);
+        return $result;
+    }
+
+    function getUser($connection, $tablename, $username)
+    {
+        $sql = "SELECT * FROM " . $tablename . " WHERE username='" . $username . "'";
         $result = $connection->query($sql);
         return $result;
     }
